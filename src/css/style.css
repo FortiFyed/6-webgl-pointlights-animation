@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: #000;
+	color: #fff;
+	font-family: Monospace;
+	font-size: 13px;
+	line-height: 24px;
+	overscroll-behavior: none;
+	overflow-x: hidden
+}
+
+canvas#webgl{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+    outline: none;
+}
+
+main{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+}
+
+main header{
+	width: 100%;
+	height: 100vh;
+	grid-column: 1 / span 12;
+}
