@@ -2,6 +2,7 @@ import '../css/style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import { LinearToneMapping } from 'three'
 
 /**
  * Variables
@@ -29,9 +30,9 @@ scene.add(new THREE.AmbientLight(0x111122));
  */
 const geometry = new THREE.BoxGeometry(40, 30, 30);
 const material = new THREE.MeshPhongMaterial({
-    color: 0xa0adaf,
+    color: 'white', //0xa0adaf
     shininess: 10,
-    specular: 0x111111,
+    specular: 'white', //0x111111
     side: THREE.BackSide,
 });
 
@@ -44,16 +45,19 @@ scene.add(mesh);
 /**
  * Lights
  */
-function createLight(color) {
+var lightBalls = [], shadowLights = [], ballsMaterial = []
+const createLight = color => {
     const intensity = 1.5;
 
     const light = new THREE.PointLight(color, intensity, 20);
     light.castShadow = true;
     light.shadow.bias = - 0.005; // reduces self-shadowing on double-sided objects
+    shadowLights.push(light)
 
     let geometry = new THREE.SphereGeometry(0.3, 12, 6);
-    let material = new THREE.MeshBasicMaterial({ color: color });
+    let material = new THREE.MeshBasicMaterial({color: color});
     material.color.multiplyScalar(intensity);
+    ballsMaterial.push(material)
     let sphere = new THREE.Mesh(geometry, material);
     light.add(sphere);
 
@@ -84,6 +88,7 @@ function createLight(color) {
     });
     sphere.customDistanceMaterial = distanceMaterial;
 
+    lightBalls.push(light)
     return light;
 }
 
@@ -124,6 +129,25 @@ document.body.appendChild(renderer.domElement);
 /**
  * Animate
  */
+let rmapped = 1
+const animateColors = () => {
+    const colors = ['#AB52DB', '#ffffff', 0x0088ff, 0xff8888]
+    var h = rmapped * 0.01 % 1;
+    var s = 0.5;
+    var l = 0.5;
+    for(let i=0; i < ballsMaterial.length; i++){
+        const color = colors[Math.floor(Math.random() * 4)]
+        ballsMaterial[i].color.set(color)
+        // ballsMaterial[i].color.setHSL(h, s, l)
+        shadowLights[i].color.set(color)
+        // shadowLights[i].color.setHSL(h, s, l)
+        lightBalls[i].color.set(color)
+        // lightBalls[i].color.setHSL(h, s, l)
+        
+        rmapped++;
+    }
+}
+
 const lightAnimation = () => {
     let time = performance.now() * 0.001;
 
@@ -151,6 +175,12 @@ const lightAnimation = () => {
 
     pointLight3.rotation.x = time;
     pointLight3.rotation.z = time;
+
+    // Color chnage
+    const timeout = setTimeout(() => {
+        animateColors()
+    }, 2000);
+
 }
 
 const animate = () => {
@@ -165,6 +195,18 @@ const animate = () => {
     window.requestAnimationFrame(animate)
 }
 animate()
+
+/**
+ * Mouse move animation
+ */
+let mouseX = 0, mouseY = 0
+document.addEventListener('mousemove', event => {
+    mouseX = event.clientX
+    mouseY = event.clientY
+    
+    camera.position.x = -mouseX * 0.005
+    camera.position.y = mouseY * 0.005
+})
 
 /**
  * Window resize

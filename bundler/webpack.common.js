@@ -4,15 +4,16 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/js/script.js'),
-    output:
-    {
+    entry: [
+        path.resolve(__dirname, '../src/js/script.js'),
+        path.resolve(__dirname, '../src/js/animation.js')
+    ],
+    output: {
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, '../dist')
     },
     devtool: 'source-map',
-    plugins:
-    [
+    plugins:[
         new CopyWebpackPlugin({
             patterns: [
                 { from: path.resolve(__dirname, '../static') }
@@ -24,22 +25,16 @@ module.exports = {
         }),
         new MiniCSSExtractPlugin()
     ],
-    module:
-    {
-        rules:
-        [
-            // HTML
-            {
+    module: {
+        rules: [{// HTML
                 test: /\.(html)$/,
                 use: ['html-loader']
             },
 
-            // JS
-            {
+            {// JS
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use:
-                [
+                use: [
                     'babel-loader'
                 ]
             },
@@ -47,8 +42,7 @@ module.exports = {
             // CSS
             {
                 test: /\.css$/,
-                use:
-                [
+                use: [
                     MiniCSSExtractPlugin.loader,
                     'css-loader'
                 ]
@@ -57,12 +51,9 @@ module.exports = {
             // Images
             {
                 test: /\.(jpg|png|gif|svg)$/,
-                use:
-                [
-                    {
+                use: [ {
                         loader: 'file-loader',
-                        options:
-                        {
+                        options: {
                             outputPath: 'assets/images/'
                         }
                     }
@@ -72,12 +63,9 @@ module.exports = {
             // Fonts
             {
                 test: /\.(ttf|eot|woff|woff2)$/,
-                use:
-                [
-                    {
+                use: [{
                         loader: 'file-loader',
-                        options:
-                        {
+                        options: {
                             outputPath: 'assets/fonts/'
                         }
                     }

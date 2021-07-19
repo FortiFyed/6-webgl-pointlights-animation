@@ -1,3 +1,10 @@
+:root{
+
+	--primary: #0088ff;
+	--secondary: #ff8888;
+
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -26,6 +33,7 @@ canvas#webgl{
 
 main{
 	position: absolute;
+	z-index: 1;
 	top: 0;
 	left: 0;
 	width: 100vw;
@@ -35,7 +43,25 @@ main{
 }
 
 main header{
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	grid-column: 1 / span 12;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main header h1{
+	font: 600 normal 100px Robotics, sans-serif;
+	margin-bottom: 20px;
+}
+
+main header h1 span{
+	color: var(--primary);
+}
+
+main header small{
+	/* font-family: comic */
+	font: 300 normal 30px Brush Script MT, cursive;
 }
