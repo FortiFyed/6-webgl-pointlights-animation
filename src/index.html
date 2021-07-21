@@ -7,7 +7,6 @@
 	</head>
 	<body>
 		<div class="circle primary" id="circle-primary"></div>
-		<!-- <div class="circle secondary" id="circle-secondary"></div> -->
 		<div class="cursor">
 			<div></div>
 		</div>
@@ -46,15 +45,29 @@
 				</div>
 				<canvas id="webgl"></canvas>
 			</header>
-			<section class="body">
-				
-			</section>
+			<!-- <section class="body">
+				<canvas id="model"></canvas>
+			</section> -->
 		</main>
-	</body>
-
-	<script>
-		window.onload = function(){
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+		<script src="./plugins/animate.gsap.js"></script>
+		<script src="./plugins/addIndicators.js"></script>
+		<script>
+			var controller = new ScrollMagic.Controller()
+			// var scene = new ScrollMagic.Scene({
+			// 	triggerElement: "header",
+			// }).setTween("h6", 0.5, {backgroundColor: "green", scale: 2})
+			// // .addIndicators({name: "1 (duration: 0)"})
+			// .addTo(controller)
 			
-		}
-	</script>
+			// var scene = new ScrollMagic.Scene({
+			// 	triggerElement: ".body", duration: 300
+			// }).setTween(".body", {backgroundColor: "blue", scale: 0.98})
+			// // .addIndicators({name: "2 (duration: 300)"})
+			// .addTo(controller);
+			
+			console.clear() //clear scrollmagic info from console
+		</script>
+	</body>
 </html>

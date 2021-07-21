@@ -8,6 +8,7 @@ const animateHeader = () => {
         onComplete: () => {
             tl.to('#circle-primary', {
                 opacity: 0,
+                display: 'none',
             })
             tl.to('body', {
                 delay: .1,
@@ -70,8 +71,8 @@ const animateScroll = (y, minus_y, delay) => {
 const initCursor = () => {
     document.body.addEventListener("mousemove", event => {    
         gsap.set(".cursor", {
-            x: event.pageX,
-            y: event.pageY,
+            x: event.pageX - 12,
+            y: event.pageY - 12,
             scale: 1,
         })
     })
@@ -87,8 +88,8 @@ const animateCursorOnHover = () => {
                     item.addEventListener('mouseleave', event => {
                         gsap.set(".cursor", {
                             padding: '10px',
-                            x: event.pageX,
-                            y: event.pageY,
+                            x: event.pageX - 12,
+                            y: event.pageY - 12,
                         });
                     })
                 }
@@ -99,5 +100,5 @@ const animateCursorOnHover = () => {
 
 animateScroll(15, 15, 1)
 animateHeader()
-// initCursor()
-// animateCursorOnHover()
+initCursor()
+animateCursorOnHover()

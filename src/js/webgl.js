@@ -2,7 +2,7 @@ import '../css/style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
-import { LinearToneMapping } from 'three'
+// import { LinearToneMapping } from 'three'
 
 /**
  * Variables
@@ -92,10 +92,10 @@ const createLight = color => {
     lightBalls.push(light)
     return light;
 }
-// 0x0088ff, 0xff8888
+
 const pointLight = createLight(0x03ddf1); // blue
 scene.add(pointLight);
-const pointLight2 = createLight(0x9529ad); // purple
+const pointLight2 = createLight(0xff0000); // red => could be purple: 0x9529ad
 scene.add(pointLight2);
 const pointLight3 = createLight(0xffffff); // white
 scene.add(pointLight3);
