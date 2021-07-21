@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
     entry: [
         path.resolve(__dirname, '../src/js/script.js'),
-        path.resolve(__dirname, '../src/js/animation.js')
+        path.resolve(__dirname, '../src/js/webgl.js')
     ],
     output: {
         filename: 'bundle.[contenthash].js',

@@ -6,14 +6,55 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	</head>
 	<body>
+		<div class="circle primary" id="circle-primary"></div>
+		<!-- <div class="circle secondary" id="circle-secondary"></div> -->
+		<div class="cursor">
+			<div></div>
+		</div>
 		<main>
 			<header>
+				<nav>
+					<div class="split">
+						<a href="#" class="logo">LightIT</a>
+						<ul>
+							<li><a href="#" class="nav_item active">
+								<p>Home</p>
+								<div class="line"></div>
+							</a></li>
+							<li><a href="#" class="nav_item">
+								<p>About</p>
+								<div class="line"></div>
+							</a></li>
+							<li><a href="#" class="nav_item">
+								<p>Contact</p>
+								<div class="line"></div>
+							</a></li>
+						</ul>
+					</div>
+				</nav>
 				<div class="header_wrap">
-					<h1><span>Pointlight</span> Animation</h1>
-					<small>Open Source Project</small>
+					<h6>__POINTLIGHT__</h6>
+					<h1>Be The <span>Light</span></h1>
+					<p>
+						Three.js pointlight animation
+					</p>
 				</div>
+				<div class="scroll">
+					<div class="scroll_container">
+						<div class="scroll_point"></div>
+					</div>
+				</div>
+				<canvas id="webgl"></canvas>
 			</header>
+			<section class="body">
+				
+			</section>
 		</main>
-        <canvas id="webgl"></canvas>
 	</body>
+
+	<script>
+		window.onload = function(){
+			
+		}
+	</script>
 </html>
